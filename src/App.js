@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import HomePage from "./components/HomePage";
 import SignupForm from "./components/SignupForm";
+import LakesMap from "./components/LakesMap";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         
         <Route path='/login' render={props => <LoginForm {...props} />} />
         <Route path='/signup' render={props => <SignupForm {...props} />} />
+        <Route path='/map' render={props => <LakesMap {...props} />} />
       </Switch>
     </div>
   );
