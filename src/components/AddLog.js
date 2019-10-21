@@ -9,26 +9,26 @@ const AddLog = ({ errors, touched, values, status, history }) => {
     <div className='LogForm'>
       <h1>User Log</h1>
       <Form className='Formlog'>
-        <Field className='fields' value={values.baitType} type='text' name='baitType' placeholder='bait used' />
+        <Field className='fields' value={values.baitType} type='text' name='baitType' placeholder='Bait' />
         {touched.baitType && errors.baitType && <p className='error'>{errors.baitType}</p>}
         <label>
           Fish Name
-          <Field className='fields' value={values.fishId} type='text' name='fishId' placeholder='fish' />
+          <Field className='fields' value={values.fishId} type='text' name='fishId' placeholder='Fish' />
           {touched.fishId && errors.fishId && <p className='error'>{errors.fishId}</p>}
         </label>
         <label>
           {' '}
           Fish Count
-          <Field className='fields' value={values.fishCount} type='number' name='fishCount' placeholder='00' />
+          <Field className='fields' value={values.fishCount} type='number' name='fishCount' placeholder='0' />
           {touched.fishCount && errors.fishCount && <p className='error'>{errors.fishCount}</p>}
         </label>
         <label>
           Time Spent
-          <Field className='fields' value={values.timeSpent} type='number' name='timeSpent' placeholder='hr' />
+          <Field className='fields' value={values.timeSpent} type='number' name='timeSpent' placeholder='Time' />
         </label>
         <label>
           Time of Day
-          <Field className='fields' value={values.timeOfDay} type='time' name='timeOfDay' placeholder='00' />
+          <Field className='fields' value={values.timeOfDay} type='time' name='timeOfDay' placeholder='08:00' />
         </label>
 
         <button className='logbutton' type='submit'>
