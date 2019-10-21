@@ -58,14 +58,14 @@ export default function UserProfile() {
             <h3>Some other info goes here</h3>
             {dummyLogs.map(log => {
                 return (
-                    <>
+                    <div className="log-card">
                         <h3>Lake {log.lakeName}</h3>
                         <p>Fish caught: {log.fishCount}</p>
                         <p>Type of fish: {log.fishName}</p>
                         <p>Bait: {log.baitType}</p>
                         <p>Time spent: {log.timeSpent}</p>
                         <p>{log.timeOfDay}</p>
-                    </>
+                    </div>
                 )
             })}
         </>
