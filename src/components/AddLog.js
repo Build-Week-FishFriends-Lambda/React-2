@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 
 const AddLog = ({ errors, touched, values, status, history }) => {
+
+
   useEffect(() => status && history.goBack(), [status, history]);
 
   return (
@@ -51,5 +53,20 @@ export default withFormik({
       timeOfDay: timeOfDay || '',
     };
   },
+
+  handleSubmit(values, { setStatus }) {
+    const { baitType, fishId, fishCount, timeSpent, timeOfDay } = values;
+    const postValues = { baitType, fishId, fishCount, timeSpent, timeOfDay };
+
+    axiosWithAuth()
+      .post('POST NEW LOG ENDPOINT', postValues)
+      .then(response => {
+        setStatus(response.data);
+        
+      })
+      .catch(error => console.error('Error', error));
+  },
+
+
 
 })(AddLog);;

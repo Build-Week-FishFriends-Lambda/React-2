@@ -49,7 +49,44 @@ export default function UserProfile() {
           "baitType": "excepteur nisi",
           "timeSpent": "3 hours",
           "timeOfDay": "Fri Jan 18 2019 08:32:32 GMT-0600 (Central Standard Time)"
+        },
+        {
+            "id": 5,
+            "lakeName": "Herring",
+            "fishCount": 4,
+            "fishName": "Largemouth Bass",
+            "baitType": "incididunt eiusmod",
+            "timeSpent": "1 hours",
+            "timeOfDay": "Sat Jan 26 2019 14:26:52 GMT-0600 (Central Standard Time)"
+        },
+        {
+            "id": 6,
+            "lakeName": "Herring",
+            "fishCount": 3,
+            "fishName": "Carp",
+            "baitType": "incididunt eiusmod",
+            "timeSpent": "1 hours",
+            "timeOfDay": "Sat Jan 26 2019 14:26:52 GMT-0600 (Central Standard Time)"
+        },
+        {
+            "id": 7,
+            "lakeName": "Evans",
+            "fishCount": 7,
+            "fishName": "Brown Trout",
+            "baitType": "excepteur nisi",
+            "timeSpent": "3 hours",
+            "timeOfDay": "Fri Jan 18 2019 08:32:32 GMT-0600 (Central Standard Time)"
+        },
+        {
+            "id": 8,
+            "lakeName": "Evans",
+            "fishCount": 7,
+            "fishName": "Grey Trout",
+            "baitType": "excepteur nisi",
+            "timeSpent": "3 hours",
+            "timeOfDay": "Fri Jan 18 2019 08:32:32 GMT-0600 (Central Standard Time)"
         }
+
       ]
 
     return(
