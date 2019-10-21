@@ -11,8 +11,8 @@ export default function LakesMap() {
     const [viewport, setViewport] = useState({
       width: '100%',
       height: '100%',
-      latitude: 47.605514,
-      longitude: -121.668538,
+      latitude: 45,
+      longitude: -95,
       zoom: 5,
     });
 
