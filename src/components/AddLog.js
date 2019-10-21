@@ -54,18 +54,18 @@ export default withFormik({
     };
   },
 
-  handleSubmit(values, { setStatus }) {
-    const { baitType, fishId, fishCount, timeSpent, timeOfDay } = values;
-    const postValues = { baitType, fishId, fishCount, timeSpent, timeOfDay };
+//   handleSubmit(values, { setStatus }) {
+//     const { baitType, fishId, fishCount, timeSpent, timeOfDay } = values;
+//     const postValues = { baitType, fishId, fishCount, timeSpent, timeOfDay };
 
-    axiosWithAuth()
-      .post('POST NEW LOG ENDPOINT', postValues)
-      .then(response => {
-        setStatus(response.data);
+//     axiosWithAuth()
+//       .post('POST NEW LOG ENDPOINT', postValues)
+//       .then(response => {
+//         setStatus(response.data);
         
-      })
-      .catch(error => console.error('Error', error));
-  },
+//       })
+//       .catch(error => console.error('Error', error));
+//   },
 
 
 
