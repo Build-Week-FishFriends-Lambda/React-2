@@ -23,7 +23,7 @@ export default function LakesMap() {
       return (
           <MapWrapper>
             <ReactMapGL
-                mapStyle='mapbox://styles/mapbox/dark-v9'
+                mapStyle='mapbox://styles/mapbox/light-v9'
                 {...viewport}
                 mapboxApiAccessToken={
                 'pk.eyJ1IjoiYnJ1bmNodGltZSIsImEiOiJjazIwdG80MGkxN3lmM25vaWZ5cThkZDU1In0.uYqrXjiEyUL1mTEO_N5-0w'
