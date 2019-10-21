@@ -33,10 +33,6 @@ const LoginForm = ({ values, errors, touched, status, history, handleUserObject 
           {touched.username && errors.username && <p>{errors.username}</p>}
           <Field value={values.pass} className='login-field' type={inputType} name='pass' placeholder='Password' />
           {touched.pass && errors.pass && <p>{errors.pass}</p>}
-          <Label>
-            <Field type='checkbox' name='showPass' onClick={() => hidePass()} />
-            Show Password
-          </Label>
           <div className='buttoncontainer'>
             <button type='submit' value='Submit'>
               Login
