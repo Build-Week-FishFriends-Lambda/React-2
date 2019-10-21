@@ -67,7 +67,7 @@ export default withFormik({
     const { username, pass } = values;
     const postValues = { username, password: pass };
     axiosWithAuth()
-      .post('/auth/login', postValues)
+      .post('/auth/login/CHANGETOREALENDPOINT', postValues)
       .then(response => {
         setStatus(response.data);
         localStorage.setItem('token', response.data.token);

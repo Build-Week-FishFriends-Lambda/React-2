@@ -15,7 +15,7 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
         setInputType('password');
       }
     }
-    
+
     return (
       <div className='html'>
         <div className='background'>
@@ -82,7 +82,7 @@ export default withFormik({
       const postValues = { firstName, lastName, username, email, password: pass };
   
       axiosWithAuth()
-        .post('/auth/register', postValues)
+        .post('/auth/register/ADDAPIENDPOINT', postValues)
         .then(response => {
           setStatus(response.data);
           localStorage.setItem('token', response.data.token);
