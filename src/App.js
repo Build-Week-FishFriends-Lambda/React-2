@@ -1,24 +1,34 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import LoginForm from "./components/LoginForm"
+import { Switch, Route } from 'react-router-dom';
+import axios from 'axios';
+import HomePage from "./components/HomePage";
+import SignupForm from "./components/SignupForm";
+import LakesMap from "./components/LakesMap";
+import UserProfile from "./components/UserProfile";
+import AddLog from "./components/AddLog"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route exact path='/' render={props => <HomePage {...props} />} />
+        
+        <Route path='/login' render={props => <LoginForm {...props} />} />
+        <Route path='/signup' render={props => <SignupForm {...props} />} />
+        {//Map should be a private route
+        }
+        <Route path='/map' render={props => <LakesMap {...props} />} />
+        {//UserProfile should be private route
+        }
+        <Route path='/profile' component={UserProfile} />
+        {//AddLog should be private route
+        }
+        <Route path='/addlog' component={AddLog} />
+        
+      </Switch>
     </div>
   );
 }
