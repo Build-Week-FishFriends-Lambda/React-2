@@ -53,26 +53,39 @@
 
 .home {
   background: #f7f7f7;
-  padding: 20px;
+  padding-top: 10vh;
+  padding-bottom:30vh;
 
 
   .home-nav{
     display:flex;
     flex-direction:column;
+    width:30%;
+    margin:0 auto;
     button {
-      width:30%;
+      width:100%;
       background: #4d4d4d;
       color: #ededed;
       border:none;
       border-radius:10px;
       padding: 20px;
       margin: 1%;
+      transition:.2s;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.02);
+        box-shadow: 5px 5px 5px #333;
+      }
     }
   }
 }
 
 .footer-wrapper {
   background: #333333;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
   p{
     color: #858585;
     margin: 0;
