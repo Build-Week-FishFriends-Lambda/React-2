@@ -23,8 +23,8 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
             <Form className='Form'>
               <Field value={values.username} className='Fields' type='text' name='username' placeholder='Username' />
               {touched.username && errors.username && <p>{errors.username}</p>}
-              <Field value={values.email} className='Fields' type='text' name='email' placeholder='Email' />
-              {touched.email && errors.email && <p>{errors.email}</p>}
+              <Field value={values.primaryemail} className='Fields' type='text' name='primaryemail' placeholder='Email' />
+              {touched.primaryemail && errors.primaryemail && <p>{errors.primaryemail}</p>}
               <Field value={values.pass} className='Fields' type={inputType} name='pass' placeholder='Password' />
               {touched.pass && errors.pass && <p>{errors.pass}</p>}
               <Field
@@ -35,10 +35,7 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
                 placeholder='Confirm Password'
               />
               {touched.passconf && errors.passconf && <p>{errors.passconf}</p>}
-              <Label>
-                <Field type='checkbox' name='showPass' onClick={() => hidePass()} />
-                Show Password
-              </Label>
+
               <div>
                 <button type='submit' value='Submit'>
                   Submit
@@ -52,21 +49,17 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
   };
 
 export default withFormik({
-    mapPropsToValues({ firstName, lastName, username, email, pass, passconf }) {
+    mapPropsToValues({ firstName, lastName, username, primaryemail, pass, passconf }) {
       return {
-        firstName: firstName || '',
-        lastName: lastName || '',
         username: username || '',
-        email: email || '',
+        primaryemail: primaryemail || '',
         pass: pass || '',
         passconf: passconf || '',
       };
     },
     validationSchema: Yup.object().shape({
-      firstName: Yup.string().required('First name is required'),
-      lastName: Yup.string().required('Last name is required'),
       username: Yup.string().required('Username is required'),
-      email: Yup.string().required('Email is required'),
+      primaryemail: Yup.string().required('Email is required'),
       pass: Yup.string().required('A password is required'),
       passconf: Yup.string().required('Please validate your password')
         .test('', 'Passwords do not match', function(value) {
@@ -74,15 +67,14 @@ export default withFormik({
         }),
     }),
     handleSubmit(values, { setStatus }) {
-      const { firstName, lastName, username, email, pass } = values;
-      const postValues = { firstName, lastName, username, email, password: pass };
+      const {username, primaryemail, pass } = values;
+      const postValues = {username, primaryemail, password: pass };
   
       axiosWithAuth()
-        .post('/auth/register/ADDAPIENDPOINT', postValues)
+        .post('/users/user', postValues)
         .then(response => {
           setStatus(response.data);
-          localStorage.setItem('token', response.data.token);
-          localStorage.setItem('user', JSON.stringify(response.data.userObject));
+          console.log(response);
         })
         .catch(error => console.error('Error', error));
     },
