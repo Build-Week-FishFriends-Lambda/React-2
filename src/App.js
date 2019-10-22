@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.scss';
 
@@ -16,17 +16,21 @@ import Copyright from "./components/Copyright";
 import LoginForm from "./components/LoginForm";
 
 function App() {
+
+  
+  
+
   return (
     <div className="App">
       <NavBar />
       <Switch>
         <Route exact path='/' render={props => <HomePage {...props} />} />
         
-        <Route path='/login' render={props => <LoginForm {...props} />} />
+        <Route path='/login' render={props => <LoginForm />} />
         <Route path='/signup' render={props => <SignupForm {...props} />} />
         {//Map should be a private route
         }
-        <PrivateRoute path='/map' render={props => <LakesMap {...props} />} />
+        <Route path='/map' render={props => <LakesMap {...props} />} />
         {//UserProfile should be private route
         }
         <PrivateRoute path='/profile' component={UserProfile} />
