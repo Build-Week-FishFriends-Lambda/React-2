@@ -107,7 +107,7 @@ export default function UserProfile() {
     return(
         <div className="user-profile">
             <h2>{localStorage.getItem('user') ? `${localStorage.getItem('user')}'s profile` : "Please Log In"}</h2>
-            {logs.map(log => {
+            {logs.filter(log => log.author === localStorage.getItem('user')).map(log => {
                 return (
                     <div className="log-card">
                         <h3>Location: {log.place}</h3>
