@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.scss';
 
 import { Switch, Route } from 'react-router-dom';
+import PrivateRoute from "./utils/PrivateRoute";
+
 import axios from 'axios';
 import HomePage from "./components/HomePage";
 import SignupForm from "./components/SignupForm";
@@ -24,13 +26,13 @@ function App() {
         <Route path='/signup' render={props => <SignupForm {...props} />} />
         {//Map should be a private route
         }
-        <Route path='/map' render={props => <LakesMap {...props} />} />
+        <PrivateRoute path='/map' render={props => <LakesMap {...props} />} />
         {//UserProfile should be private route
         }
-        <Route path='/profile' component={UserProfile} />
+        <PrivateRoute path='/profile' component={UserProfile} />
         {//AddLog should be private route
         }
-        <Route path='/addlog' component={AddLog} />
+        <PrivateRoute path='/addlog' component={AddLog} />
         
       </Switch>
       <Copyright></Copyright>

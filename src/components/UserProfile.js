@@ -106,8 +106,7 @@ export default function UserProfile() {
 
     return(
         <div className="user-profile">
-            <h2>Username goes here</h2>
-            <h3>Some other info goes here</h3>
+            <h2>{localStorage.getItem('user') ? `${localStorage.getItem('user')}'s profile` : "Please Log In"}</h2>
             {logs.map(log => {
                 return (
                     <div className="log-card">
