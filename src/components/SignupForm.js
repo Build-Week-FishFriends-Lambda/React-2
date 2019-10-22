@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Label } from 'semantic-ui-react';
+import axios from "axios";
 
 import axiosWithAuth from '../utils/axiosWithAuth';
 
@@ -69,7 +70,7 @@ export default withFormik({
     handleSubmit(values, { setStatus }) {
       const {username, primaryemail, pass } = values;
       const postValues = {username, primaryemail, password: pass };
-  
+      console.log(postValues);
       axiosWithAuth()
         .post('/users/user', postValues)
         .then(response => {

@@ -6,7 +6,13 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 const AddLog = ({ errors, touched, values, status, history }) => {
 
 
-
+  useEffect(()=>{  
+    axiosWithAuth().get("locations/all")
+    .then(res => {
+      console.log(res)
+     })
+    .catch(err => console.log(err))  
+},[])
 
   return (
     <div className='LogForm'>
@@ -55,7 +61,7 @@ export default withFormik({
       fishtypes: fishtypes || '',
       fishnum: fishnum || '',
       timespent: timespent || '',
-      user: null,
+      author: localStorage.getItem('user') || "",
     };
   },
 

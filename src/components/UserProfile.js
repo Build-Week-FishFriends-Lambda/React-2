@@ -112,6 +112,7 @@ export default function UserProfile() {
                 return (
                     <div className="log-card">
                         <h3>Location: {log.place}</h3>
+                        <h4>Author: {log.author}</h4>
                         <p>Fish caught: {log.fishnum}</p>
                         <p>Type of fish: {log.fishtypes}</p>
                         <p>Bait: {log.baittype}</p>
