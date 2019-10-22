@@ -38,8 +38,45 @@
     font-size:2rem;
     color:#ededed;
     text-decoration:none;
+    transition:1s;
   }
   a:hover {
     color: #fff;
   }
+  .active-link {
+    padding:5px;
+    background: #c7aa8b;
+    border-radius:5px;
+  }
 }
+
+
+.home {
+  background: #f7f7f7;
+  padding: 20px;
+
+
+  .home-nav{
+    display:flex;
+    flex-direction:column;
+    button {
+      width:30%;
+      background: #4d4d4d;
+      color: #ededed;
+      border:none;
+      border-radius:10px;
+      padding: 20px;
+      margin: 1%;
+    }
+  }
+}
+
+.footer-wrapper {
+  background: #333333;
+  p{
+    color: #858585;
+    margin: 0;
+    padding:10px;
+  }
+}
+
