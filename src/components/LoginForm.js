@@ -8,10 +8,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 const LoginForm = ({ values, errors, touched, status, history, handleUserObject }) => {
   const [inputType, setInputType] = useState('password');
-  useEffect(() => {
-    status && handleUserObject(status.userObject);
-    status && history.push('/map');
-  });
+
   function hidePass() {
     if (inputType === 'password') {
       setInputType('text');
@@ -65,12 +62,12 @@ export default withFormik({
     const postValues = { username: username, password: pass };
     console.log("LOGIN SUBMITTED", username, pass);
     axiosWithAuth()
-      .post('/login', postValues)
+      .post('/login', `grant_type=password&username=${postValues.username}&password=${postValues.password}`)
       .then(response => {
-        console.log(postValues);
+        console.log(response);
         setStatus(response.data);
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.userObject));
+        localStorage.setItem('token', response.data.access_token);
+        localStorage.setItem('user', JSON.stringify(postValues));
       })
       .catch(error => {
         console.log(postValues);

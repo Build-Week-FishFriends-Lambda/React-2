@@ -11,7 +11,8 @@ export default function axiosWithAuth() {
   return axios.create({
     baseURL: 'http://fishfriends.herokuapp.com/',
     headers: {
-      Authorization: token,
+      Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+    'Content-Type': 'application/x-www-form-urlencoded'
     },
   });
 }

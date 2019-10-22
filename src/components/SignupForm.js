@@ -21,10 +21,6 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
         <div className='background'>
           <div className='FormContainer'>
             <Form className='Form'>
-              <Field value={values.firstName} className='Fields' type='text' name='firstName' placeholder='First Name' />
-              {touched.firstname && errors.firstname && <p>{errors.firstname}</p>}
-              <Field value={values.lastName} className='Fields' type='text' name='lastName' placeholder='Last Name' />
-              {touched.lastname && errors.lastname && <p>{errors.lastname}</p>}
               <Field value={values.username} className='Fields' type='text' name='username' placeholder='Username' />
               {touched.username && errors.username && <p>{errors.username}</p>}
               <Field value={values.email} className='Fields' type='text' name='email' placeholder='Email' />
