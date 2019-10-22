@@ -30,6 +30,6 @@ export default function LakesMap() {
                 }
                 onViewportChange={_onViewportChange}>
             </ReactMapGL>
-        </MapWrapper>
+          </MapWrapper>
       );
     }

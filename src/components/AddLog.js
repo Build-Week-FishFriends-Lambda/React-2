@@ -65,7 +65,7 @@ export default withFormik({
     };
   },
 
-  handleSubmit(values, { setStatus }) {
+  handleSubmit(values, { resetForm, setStatus }) {
     
 
     axiosWithAuth()
@@ -73,6 +73,7 @@ export default withFormik({
       .then(response => {
         setStatus(response.data);
         console.log(response)
+        resetForm();
       })
       .catch(error => {
         console.log(values);

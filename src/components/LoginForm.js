@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import axiosWithAuthLogin from '../utils/axiosWithAuthLogin';
 
-const LoginForm = ({ values, errors, touched, status, history, handleUserObject }) => {
+const LoginForm = ({ values, errors, touched}) => {
   const [inputType, setInputType] = useState('password');
 
   function hidePass() {

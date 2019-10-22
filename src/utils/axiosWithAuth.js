@@ -11,7 +11,7 @@ export default function axiosWithAuth() {
   return axios.create({
     baseURL: 'http://fishfriends.herokuapp.com/',
     headers: {
-      Authorization: token,
+      Authorization: "Bearer " + token,
     },
   });
 }

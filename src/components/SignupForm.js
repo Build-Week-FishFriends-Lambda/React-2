@@ -71,8 +71,8 @@ export default withFormik({
       const {username, primaryemail, pass } = values;
       const postValues = {username, primaryemail, password: pass };
       console.log(postValues);
-      axiosWithAuth()
-        .post('/users/user', postValues)
+      axios
+        .post('http://fishfriends.herokuapp.com/users/user', postValues)
         .then(response => {
           setStatus(response.data);
           console.log(response);
