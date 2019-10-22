@@ -21,3 +21,25 @@
 .App-link {
   color: #09d3ac;
 }
+
+.nav-bar {
+  width:100%;
+  padding: 5px 0px;
+  background: #333333;
+  display:flex;
+  justify-content:space-evenly;
+  align-items:center;
+  .nav-logo {
+    height: 4rem;
+    margin-top:10px;
+  }
+
+  a{
+    font-size:2rem;
+    color:#ededed;
+    text-decoration:none;
+  }
+  a:hover {
+    color: #fff;
+  }
+}
