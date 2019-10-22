@@ -8,11 +8,13 @@ import HomePage from "./components/HomePage";
 import SignupForm from "./components/SignupForm";
 import LakesMap from "./components/LakesMap";
 import UserProfile from "./components/UserProfile";
-import AddLog from "./components/AddLog"
+import AddLog from "./components/AddLog";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <div className="App">
+      <NavBar />
       <Switch>
         <Route exact path='/' render={props => <HomePage {...props} />} />
         
