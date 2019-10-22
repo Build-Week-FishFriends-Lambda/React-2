@@ -75,6 +75,7 @@ html {
       transition:.2s;
       cursor: pointer;
       &:hover {
+        font-size: 1.3rem;
         transform: scale(1.02);
         box-shadow: 5px 5px 5px #333;
       }
