@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 export default function UserProfile() {
+
+    const [logs, setLogs] = useState({});
 
     const logArray = ["Log 1", "log 2", "log 3", "log 4", "log 5"];
 
@@ -88,6 +91,10 @@ export default function UserProfile() {
         }
 
       ]
+
+    axiosWithAuth().get("logs/all")
+      .then(res => console.log("GET LOGS RESULT:", res))
+      .catch(err => console.log(err));
 
     return(
         <>
