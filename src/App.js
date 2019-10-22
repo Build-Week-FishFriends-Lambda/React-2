@@ -1,18 +1,22 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
-import LoginForm from "./components/LoginForm"
+
 import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import HomePage from "./components/HomePage";
 import SignupForm from "./components/SignupForm";
 import LakesMap from "./components/LakesMap";
 import UserProfile from "./components/UserProfile";
-import AddLog from "./components/AddLog"
+import AddLog from "./components/AddLog";
+import NavBar from "./components/NavBar";
+import Copyright from "./components/Copyright";
+import LoginForm from "./components/LoginForm";
 
 function App() {
   return (
     <div className="App">
+      <NavBar />
       <Switch>
         <Route exact path='/' render={props => <HomePage {...props} />} />
         
@@ -29,6 +33,7 @@ function App() {
         <Route path='/addlog' component={AddLog} />
         
       </Switch>
+      <Copyright></Copyright>
     </div>
   );
 }
