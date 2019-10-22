@@ -105,7 +105,7 @@ export default function UserProfile() {
     
 
     return(
-        <>
+        <div className="user-profile">
             <h2>Username goes here</h2>
             <h3>Some other info goes here</h3>
             {logs.map(log => {
@@ -120,7 +120,7 @@ export default function UserProfile() {
                     </div>
                 )
             })}
-        </>
+        </div>
     )
 
 }
