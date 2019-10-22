@@ -3,9 +3,19 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 
 export default function UserProfile() {
 
-    const [logs, setLogs] = useState({});
+    const [logs, setLogs] = useState([]);
+
+
+    useEffect(()=>{  
+      axiosWithAuth().get("logs/all")
+      .then(res => {
+        console.log(res.data)
+        setLogs(res.data)})
+      .catch(err => console.log(err))  
+  },[])
 
     const logArray = ["Log 1", "log 2", "log 3", "log 4", "log 5"];
+
 
     const dummyLogs = [
         {
@@ -92,23 +102,21 @@ export default function UserProfile() {
 
       ]
 
-    axiosWithAuth().get("logs/all")
-      .then(res => console.log("GET LOGS RESULT:", res))
-      .catch(err => console.log(err));
+    
 
     return(
         <>
             <h2>Username goes here</h2>
             <h3>Some other info goes here</h3>
-            {dummyLogs.map(log => {
+            {logs.map(log => {
                 return (
                     <div className="log-card">
-                        <h3>Lake {log.lakeName}</h3>
-                        <p>Fish caught: {log.fishCount}</p>
-                        <p>Type of fish: {log.fishName}</p>
-                        <p>Bait: {log.baitType}</p>
-                        <p>Time spent: {log.timeSpent}</p>
-                        <p>{log.timeOfDay}</p>
+                        <h3>Location: {log.place}</h3>
+                        <h4>Author: {log.author}</h4>
+                        <p>Fish caught: {log.fishnum}</p>
+                        <p>Type of fish: {log.fishtypes}</p>
+                        <p>Bait: {log.baittype}</p>
+                        <p>Time spent: {log.timespent}</p>
                     </div>
                 )
             })}
