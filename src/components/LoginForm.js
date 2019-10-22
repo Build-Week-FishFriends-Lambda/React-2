@@ -60,15 +60,21 @@ export default withFormik({
     pass: Yup.string().required('Enter your password'),
   }),
   handleSubmit(values, { setStatus }) {
+    
     const { username, pass } = values;
-    const postValues = { username, password: pass };
+    const postValues = { username: username, password: pass };
+    console.log("LOGIN SUBMITTED", username, pass);
     axiosWithAuth()
-      .post('/auth/login/CHANGETOREALENDPOINT', postValues)
+      .post('/login', postValues)
       .then(response => {
+        console.log(postValues);
         setStatus(response.data);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.userObject));
       })
-      .catch(error => console.error('Error', error));
+      .catch(error => {
+        console.log(postValues);
+        console.error('Error', error)
+      });
   },
 })(LoginForm);

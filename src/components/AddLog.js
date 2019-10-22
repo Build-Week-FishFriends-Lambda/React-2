@@ -6,12 +6,16 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 const AddLog = ({ errors, touched, values, status, history }) => {
 
 
-  useEffect(() => status && history.goBack(), [status, history]);
+
 
   return (
     <div className='LogForm'>
       <h1>User Log</h1>
       <Form className='Formlog'>
+        <label>
+          Location
+          <Field className='fields' value={values.place} type='text' name='place' placeholder='Location' />
+        </label>
         <label>
           Bait Type
         <Field className='fields' value={values.baittype} type='text' name='baittype' placeholder='Bait' />
@@ -44,8 +48,9 @@ const AddLog = ({ errors, touched, values, status, history }) => {
 
 
 export default withFormik({
-  mapPropsToValues({ baittype, fishtypes, fishnum, timespent}) {
+  mapPropsToValues({ baittype, fishtypes, fishnum, timespent, place}) {
     return {
+      place: place || '',
       baittype: baittype || '',
       fishtypes: fishtypes || '',
       fishnum: fishnum || '',
