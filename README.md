@@ -7,15 +7,19 @@ Product Canvas: https://docs.google.com/document/d/1DcZX70KxAyLNgy6P-7omYU5rG9YF
 ## Team (Representing Lambda WEB22-WEB25)
 
 Project Lead:
+
 Aaron Fuller
 
 Front End:
+
 Michael Harms - @michaelharms70
 
 Cody Garrett
 
 Back End:
+
 Jon Solari
 
 Marketing UI:
+
 Chase Redford
