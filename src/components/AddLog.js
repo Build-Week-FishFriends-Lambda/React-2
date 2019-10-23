@@ -98,7 +98,6 @@ export default withFormik({
     axiosWithAuth()
       .post('logs/add', values)
       .then(response => {
-        setStatus(response.data);
         console.log(response)
         resetForm();
       })
