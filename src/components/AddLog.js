@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import styled from "styled-components";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const LogForm = styled.div`
   background-color: #333;
@@ -25,7 +26,7 @@ const LogForm = styled.div`
     border-radius: 3px;
   }
 `
-import axiosWithAuth from "../utils/axiosWithAuth";
+
 
 const AddLog = ({ errors, touched, values, status, history }) => {
 

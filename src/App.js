@@ -46,8 +46,9 @@ function App() {
           }
           <PrivateRoute path='/addlog' component={AddLog} />
 
-          <Route path='/location' exact component={Location} />
-          <Route path="/location/:name" render={props => <LocationCard {...props}/>}/>
+          <Route path='/location' component={Location} />
+
+          <Route exact path="/location/:name" render={props => <LocationCard {...props}/>}/>
           
         </Switch>
         <Copyright />
