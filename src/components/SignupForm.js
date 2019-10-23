@@ -67,15 +67,16 @@ export default withFormik({
           return this.parent.pass === value;
         }),
     }),
-    handleSubmit(values, { setStatus }) {
+    handleSubmit(values, formikBag) {
       const {username, primaryemail, pass } = values;
       const postValues = {username, primaryemail, password: pass };
       console.log(postValues);
       axios
         .post('http://fishfriends.herokuapp.com/users/user', postValues)
         .then(response => {
-          setStatus(response.data);
+          console.log(formikBag)
           console.log(response);
+          formikBag.props.history.push("/login");
         })
         .catch(error => console.error('Error', error));
     },

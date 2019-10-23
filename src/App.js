@@ -32,7 +32,7 @@ function App() {
         <Switch>
           <Route exact path='/' render={props => <HomePage {...props} />} />
           
-          <Route path='/login' render={props => <LoginForm />} />
+          <Route path='/login' component={LoginForm} />
           <Route path='/signup' render={props => <SignupForm {...props} />} />
           {//Map should be a private route
           }

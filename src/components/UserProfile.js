@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import AddLog from "./AddLog";
+import { LoginContext } from '../contexts/LoginContext';
 
 export default function UserProfile() {
 
     const [logs, setLogs] = useState([]);
-
+    const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
 
     useEffect(()=>{  
       axiosWithAuth().get("logs/all")
@@ -14,6 +15,10 @@ export default function UserProfile() {
         setLogs(res.data)})
       .catch(err => console.log(err))  
   },[])
+
+    useEffect(()=>{  
+        setIsLoggedIn(true);
+    },[])
 
     return(
         <div className="user-profile">
