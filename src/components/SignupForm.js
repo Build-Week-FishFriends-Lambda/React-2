@@ -2,9 +2,40 @@ import React, { useEffect, useState } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Label } from 'semantic-ui-react';
+import styled from "styled-components";
 import axios from "axios";
 
 import axiosWithAuth from '../utils/axiosWithAuth';
+
+const FormContainer = styled.div`
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Form {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 3px;
+    color: white;
+    box-shadow: 5px 5px 5px #000;
+
+    input {
+      padding: 5px;
+      margin: 5px;
+      border-radius: 3px;
+    }
+
+    button {
+      padding: 5px 25px;
+      margin-top: 10px;
+      background-color: #c7aa8b;
+      color: white;
+      border-radius: 3px;
+    }
+  }
+`
 
 const SignupForm = ({ values, errors, touched, status, history, handleUserObject }) => {
     const [inputType, setInputType] = useState('password');
@@ -20,7 +51,7 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
     return (
       <div className='html'>
         <div className='background'>
-          <div className='FormContainer'>
+          <FormContainer className='FormContainer'>
             <Form className='Form'>
               <Field value={values.username} className='Fields' type='text' name='username' placeholder='Username' />
               {touched.username && errors.username && <p>{errors.username}</p>}
@@ -28,6 +59,7 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
               {touched.primaryemail && errors.primaryemail && <p>{errors.primaryemail}</p>}
               <Field value={values.pass} className='Fields' type={inputType} name='pass' placeholder='Password' />
               {touched.pass && errors.pass && <p>{errors.pass}</p>}
+              <br></br>
               <Field
                 value={values.passconf}
                 className='Fields'
@@ -43,7 +75,7 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
                 </button>
               </div>
             </Form>
-          </div>
+          </FormContainer>
         </div>
       </div>
     );

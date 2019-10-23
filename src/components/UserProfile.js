@@ -1,7 +1,18 @@
+import styled from "styled-components";
 import React, { useContext, useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import AddLog from "./AddLog";
-import { LoginContext } from '../contexts/LoginContext';
+import { LoginContext } from '../contexts/LoginContext'
+
+const Card = styled.div`
+  background-color: #333;
+  width: 300px;
+  margin: 20px auto;
+  padding: 10px;
+  color: white;
+  border-radius: 3px;
+  box-shadow: 5px 5px 5px #000;
+`
 
 export default function UserProfile() {
 

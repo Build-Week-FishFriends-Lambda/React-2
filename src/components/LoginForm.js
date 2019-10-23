@@ -3,9 +3,45 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
 import { LoginContext } from '../contexts/LoginContext';
 
 import axiosWithAuthLogin from '../utils/axiosWithAuthLogin';
+
+const Center = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40vh;
+`
+
+const LoginContainer = styled.div`
+  width: 300px;
+  border-radius: 3px;
+  background-color: #333;
+  box-shadow: 5px 5px 5px #000;
+  padding: 10px;
+  
+  input {
+    padding: 5px;
+    border-radius: 3px;
+    margin: 10px;
+  }
+
+  button {
+    padding: 5px 25px;
+    margin-top: 10px;
+    background-color: #c7aa8b;
+    color: white;
+    border-radius: 3px;
+  }
+
+  a {
+    color: white;
+  }
+`
+
 
 const LoginForm = ({ values, errors, touched}) => {
   const [inputType, setInputType] = useState('password');
@@ -19,8 +55,8 @@ const LoginForm = ({ values, errors, touched}) => {
     }
   }
   return (
-    <div className='login'>
-      <div className='FormContainer'>
+    <Center className='login'>
+      <LoginContainer className='FormContainer'>
         <Form className='Form'>
           <Field
             value={values.username}
@@ -30,6 +66,7 @@ const LoginForm = ({ values, errors, touched}) => {
             placeholder='Username'
           />
           {touched.username && errors.username && <p>{errors.username}</p>}
+          <br></br>
           <Field value={values.pass} className='login-field' type={inputType} name='pass' placeholder='Password' />
           {touched.pass && errors.pass && <p>{errors.pass}</p>}
           <div className='buttoncontainer'>
@@ -42,8 +79,8 @@ const LoginForm = ({ values, errors, touched}) => {
             </Link>
           </div>
         </Form>
-      </div>
-    </div>
+      </LoginContainer>
+    </Center>
   );
 };
 

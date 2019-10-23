@@ -25,6 +25,10 @@ const NavBar = (props) => {
             }}
             
             activeClassName="active-link">My Stories</NavLink>
+
+            <NavLink to="/location">
+                Location
+            </NavLink>
             
         </div>
 )};

@@ -15,6 +15,8 @@ import AddLog from "./components/AddLog";
 import NavBar from "./components/NavBar";
 import Copyright from "./components/Copyright";
 import LoginForm from "./components/LoginForm";
+import Location from "./components/Location";
+import LocationCard from "./components/LocationCard"; 
 
 function App() {
   
@@ -43,6 +45,10 @@ function App() {
           {//AddLog should be private route
           }
           <PrivateRoute path='/addlog' component={AddLog} />
+
+          <Route path='/location' component={Location} />
+
+          <Route exact path="/location/:name" render={props => <LocationCard {...props}/>}/>
           
         </Switch>
         <Copyright />

@@ -1,7 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
+import styled from "styled-components";
 import axiosWithAuth from "../utils/axiosWithAuth";
+
+const LogForm = styled.div`
+  background-color: #333;
+  width: 300px;
+  color: white;
+  margin: auto;
+  border-radius: 3px;
+  box-shadow: 5px 5px 5px #000;
+
+  input {
+    border-radius: 3px;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  button {
+    padding: 5px 25px;
+    margin: 10px auto;
+    background-color: #c7aa8b;
+    color: white;
+    border-radius: 3px;
+  }
+`
+
 
 const AddLog = ({ errors, touched, values, status, history }) => {
 
@@ -15,7 +40,7 @@ const AddLog = ({ errors, touched, values, status, history }) => {
 },[])
 
   return (
-    <div className='LogForm'>
+    <LogForm className='LogForm'>
       <h1>User Log</h1>
       <Form className='Formlog'>
         <label>
@@ -32,22 +57,24 @@ const AddLog = ({ errors, touched, values, status, history }) => {
           <Field className='fields' value={values.fishtypes} type='text' name='fishtypes' placeholder='Fish' />
           {touched.fishtypes && errors.fishtypes && <p className='error'>{errors.fishtypes}</p>}
         </label>
+        <br></br>
         <label>
           {' '}
           Fish Count
           <Field className='fields' value={values.fishnum} type='number' name='fishnum' placeholder='0' />
           {touched.fishnum && errors.fishnum && <p className='error'>{errors.fishnum}</p>}
         </label>
+        <br></br>
         <label>
           Time Spent
           <Field className='fields' value={values.timespent} type='text' name='timespent' placeholder='Time Spent' />
         </label>
-
+        <br></br>
         <button className='logbutton' type='submit'>
           Submit!
         </button>
       </Form>
-    </div>
+    </LogForm>
   );
 };
 
