@@ -104,7 +104,7 @@ export default withFormik({
       const postValues = {username, primaryemail, password: pass };
       console.log(postValues);
       axios
-        .post('http://fishfriends.herokuapp.com/users/user', postValues)
+        .post('https://fishfriends.herokuapp.com/users/user', postValues)
         .then(response => {
           console.log(formikBag)
           console.log(response);
