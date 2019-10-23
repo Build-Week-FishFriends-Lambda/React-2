@@ -25,43 +25,48 @@ const LogForm = styled.div`
     border-radius: 3px;
   }
 `
+import axiosWithAuth from "../utils/axiosWithAuth";
 
 const AddLog = ({ errors, touched, values, status, history }) => {
 
 
-  useEffect(() => status && history.goBack(), [status, history]);
+  useEffect(()=>{  
+    axiosWithAuth().get("locations/all")
+    .then(res => {
+      console.log(res)
+     })
+    .catch(err => console.log(err))  
+},[])
 
   return (
     <LogForm className='LogForm'>
       <h1>User Log</h1>
       <Form className='Formlog'>
         <label>
-        Bait Used<br></br>
-        <Field className='fields' value={values.baitType} type='text' name='baitType' placeholder='Bait' />
-        {touched.baitType && errors.baitType && <p className='error'>{errors.baitType}</p>}
+          Location
+          <Field className='fields' value={values.place} type='text' name='place' placeholder='Location' />
         </label>
-        <br></br>
         <label>
-          Fish Name<br></br>
-          <Field className='fields' value={values.fishId} type='text' name='fishId' placeholder='Fish' />
-          {touched.fishId && errors.fishId && <p className='error'>{errors.fishId}</p>}
+          Bait Type
+        <Field className='fields' value={values.baittype} type='text' name='baittype' placeholder='Bait' />
+        {touched.baittype && errors.baittype && <p className='error'>{errors.baittype}</p>}
+        </label>
+        <label>
+          Fish Name
+          <Field className='fields' value={values.fishtypes} type='text' name='fishtypes' placeholder='Fish' />
+          {touched.fishtypes && errors.fishtypes && <p className='error'>{errors.fishtypes}</p>}
         </label>
         <br></br>
         <label>
           {' '}
-          Fish Count<br></br>
-          <Field className='fields' value={values.fishCount} type='number' name='fishCount' placeholder='0' />
-          {touched.fishCount && errors.fishCount && <p className='error'>{errors.fishCount}</p>}
+          Fish Count
+          <Field className='fields' value={values.fishnum} type='number' name='fishnum' placeholder='0' />
+          {touched.fishnum && errors.fishnum && <p className='error'>{errors.fishnum}</p>}
         </label>
         <br></br>
         <label>
-          Time Spent<br></br>
-          <Field className='fields' value={values.timeSpent} type='number' name='timeSpent' placeholder='Time' />
-        </label>
-        <br></br>
-        <label>
-          Time of Day<br></br>
-          <Field className='fields' value={values.timeOfDay} type='time' name='timeOfDay' placeholder='08:00' />
+          Time Spent
+          <Field className='fields' value={values.timespent} type='text' name='timespent' placeholder='Time Spent' />
         </label>
         <br></br>
         <button className='logbutton' type='submit'>
@@ -75,28 +80,33 @@ const AddLog = ({ errors, touched, values, status, history }) => {
 
 
 export default withFormik({
-  mapPropsToValues({ baitType, fishId, fishCount, timeSpent, timeOfDay }) {
+  mapPropsToValues({ baittype, fishtypes, fishnum, timespent, place}) {
     return {
-      baitType: baitType || '',
-      fishId: fishId || '',
-      fishCount: fishCount || '',
-      timeSpent: timeSpent || '',
-      timeOfDay: timeOfDay || '',
+      place: place || '',
+      baittype: baittype || '',
+      fishtypes: fishtypes || '',
+      fishnum: fishnum || '',
+      timespent: timespent || '',
+      author: localStorage.getItem('user') || "",
     };
   },
 
-//   handleSubmit(values, { setStatus }) {
-//     const { baitType, fishId, fishCount, timeSpent, timeOfDay } = values;
-//     const postValues = { baitType, fishId, fishCount, timeSpent, timeOfDay };
+  handleSubmit(values, { resetForm, setStatus }) {
+    
 
-//     axiosWithAuth()
-//       .post('POST NEW LOG ENDPOINT', postValues)
-//       .then(response => {
-//         setStatus(response.data);
+    axiosWithAuth()
+      .post('logs/add', values)
+      .then(response => {
+        setStatus(response.data);
+        console.log(response)
+        resetForm();
+      })
+      .catch(error => {
+        console.log(values);
         
-//       })
-//       .catch(error => console.error('Error', error));
-//   },
+        console.error('Error', error);
+      });
+  },
 
 
 

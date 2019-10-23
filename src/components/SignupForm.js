@@ -3,6 +3,7 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Label } from 'semantic-ui-react';
 import styled from "styled-components";
+import axios from "axios";
 
 import axiosWithAuth from '../utils/axiosWithAuth';
 
@@ -52,18 +53,10 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
         <div className='background'>
           <FormContainer className='FormContainer'>
             <Form className='Form'>
-              <Field value={values.firstName} className='Fields' type='text' name='firstName' placeholder='First Name' />
-              {touched.firstname && errors.firstname && <p>{errors.firstname}</p>}
-              <br></br>
-              <Field value={values.lastName} className='Fields' type='text' name='lastName' placeholder='Last Name' />
-              {touched.lastname && errors.lastname && <p>{errors.lastname}</p>}
-              <br></br>
               <Field value={values.username} className='Fields' type='text' name='username' placeholder='Username' />
               {touched.username && errors.username && <p>{errors.username}</p>}
-              <br></br>
-              <Field value={values.email} className='Fields' type='text' name='email' placeholder='Email' />
-              {touched.email && errors.email && <p>{errors.email}</p>}
-              <br></br>
+              <Field value={values.primaryemail} className='Fields' type='text' name='primaryemail' placeholder='Email' />
+              {touched.primaryemail && errors.primaryemail && <p>{errors.primaryemail}</p>}
               <Field value={values.pass} className='Fields' type={inputType} name='pass' placeholder='Password' />
               {touched.pass && errors.pass && <p>{errors.pass}</p>}
               <br></br>
@@ -75,10 +68,7 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
                 placeholder='Confirm Password'
               />
               {touched.passconf && errors.passconf && <p>{errors.passconf}</p>}
-              <Label>
-                <Field type='checkbox' name='showPass' onClick={() => hidePass()} />
-                Show Password
-              </Label>
+
               <div>
                 <button type='submit' value='Submit'>
                   Submit
@@ -92,37 +82,33 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
   };
 
 export default withFormik({
-    mapPropsToValues({ firstName, lastName, username, email, pass, passconf }) {
+    mapPropsToValues({ firstName, lastName, username, primaryemail, pass, passconf }) {
       return {
-        firstName: firstName || '',
-        lastName: lastName || '',
         username: username || '',
-        email: email || '',
+        primaryemail: primaryemail || '',
         pass: pass || '',
         passconf: passconf || '',
       };
     },
     validationSchema: Yup.object().shape({
-      firstName: Yup.string().required('First name is required'),
-      lastName: Yup.string().required('Last name is required'),
       username: Yup.string().required('Username is required'),
-      email: Yup.string().required('Email is required'),
+      primaryemail: Yup.string().required('Email is required'),
       pass: Yup.string().required('A password is required'),
       passconf: Yup.string().required('Please validate your password')
         .test('', 'Passwords do not match', function(value) {
           return this.parent.pass === value;
         }),
     }),
-    handleSubmit(values, { setStatus }) {
-      const { firstName, lastName, username, email, pass } = values;
-      const postValues = { firstName, lastName, username, email, password: pass };
-  
-      axiosWithAuth()
-        .post('/auth/register/ADDAPIENDPOINT', postValues)
+    handleSubmit(values, formikBag) {
+      const {username, primaryemail, pass } = values;
+      const postValues = {username, primaryemail, password: pass };
+      console.log(postValues);
+      axios
+        .post('http://fishfriends.herokuapp.com/users/user', postValues)
         .then(response => {
-          setStatus(response.data);
-          localStorage.setItem('token', response.data.token);
-          localStorage.setItem('user', JSON.stringify(response.data.userObject));
+          console.log(formikBag)
+          console.log(response);
+          formikBag.props.history.push("/login");
         })
         .catch(error => console.error('Error', error));
     },

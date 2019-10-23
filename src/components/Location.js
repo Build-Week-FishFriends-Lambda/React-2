@@ -45,7 +45,7 @@ export default function Location() {
         })
     }, [])
     
-
+    
     return (
        <>
         {location.map((el, index) => {

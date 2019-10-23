@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import { LoginContext } from '../contexts/LoginContext';
 
-import axiosWithAuth from '../utils/axiosWithAuth';
+import axiosWithAuthLogin from '../utils/axiosWithAuthLogin';
 
 const Center = styled.div`
   display: flex;
@@ -41,12 +42,11 @@ const LoginContainer = styled.div`
   }
 `
 
-const LoginForm = ({ values, errors, touched, status, history, handleUserObject }) => {
+
+const LoginForm = ({ values, errors, touched}) => {
   const [inputType, setInputType] = useState('password');
-  useEffect(() => {
-    status && handleUserObject(status.userObject);
-    status && history.push('/map');
-  });
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  
   function hidePass() {
     if (inputType === 'password') {
       setInputType('text');
@@ -85,6 +85,7 @@ const LoginForm = ({ values, errors, touched, status, history, handleUserObject 
 };
 
 export default withFormik({
+  
   mapPropsToValues({ username, pass }) {
     return {
       username: username || '',
@@ -95,16 +96,23 @@ export default withFormik({
     username: Yup.string().required('Please enter your username'),
     pass: Yup.string().required('Enter your password'),
   }),
-  handleSubmit(values, { setStatus }) {
+  handleSubmit(values, formikBag) {
+    
     const { username, pass } = values;
-    const postValues = { username, password: pass };
-    axiosWithAuth()
-      .post('/auth/login/CHANGETOREALENDPOINT', postValues)
+    const postValues = { username: username, password: pass };
+    console.log("LOGIN SUBMITTED", username, pass);
+    axiosWithAuthLogin()
+      .post('/login', `grant_type=password&username=${postValues.username}&password=${postValues.password}`)
       .then(response => {
-        setStatus(response.data);
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.userObject));
+        console.log(response);
+        console.log(formikBag);
+        localStorage.setItem('token', response.data.access_token);
+        localStorage.setItem('user', postValues.username);
+        formikBag.props.history.push("/profile");
       })
-      .catch(error => console.error('Error', error));
+      .catch(error => {
+        console.log(postValues);
+        console.error('Error', error)
+      });
   },
 })(LoginForm);
