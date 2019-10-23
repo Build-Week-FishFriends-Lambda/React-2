@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { LoginContext } from '../contexts/LoginContext';
 
 import axiosWithAuthLogin from '../utils/axiosWithAuthLogin';
 
 const LoginForm = ({ values, errors, touched}) => {
   const [inputType, setInputType] = useState('password');
-
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  
   function hidePass() {
     if (inputType === 'password') {
       setInputType('text');
@@ -46,6 +48,7 @@ const LoginForm = ({ values, errors, touched}) => {
 };
 
 export default withFormik({
+  
   mapPropsToValues({ username, pass }) {
     return {
       username: username || '',
@@ -56,7 +59,7 @@ export default withFormik({
     username: Yup.string().required('Please enter your username'),
     pass: Yup.string().required('Enter your password'),
   }),
-  handleSubmit(values, { setStatus }) {
+  handleSubmit(values, formikBag) {
     
     const { username, pass } = values;
     const postValues = { username: username, password: pass };
@@ -65,9 +68,10 @@ export default withFormik({
       .post('/login', `grant_type=password&username=${postValues.username}&password=${postValues.password}`)
       .then(response => {
         console.log(response);
-        setStatus(response.data);
+        console.log(formikBag);
         localStorage.setItem('token', response.data.access_token);
         localStorage.setItem('user', postValues.username);
+        formikBag.props.history.push("/profile");
       })
       .catch(error => {
         console.log(postValues);
