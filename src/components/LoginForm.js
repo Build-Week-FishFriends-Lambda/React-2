@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { LoginContext } from '../contexts/LoginContext';
 
 import axiosWithAuthLogin from '../utils/axiosWithAuthLogin';
 
 const LoginForm = ({ values, errors, touched}) => {
   const [inputType, setInputType] = useState('password');
-
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  
   function hidePass() {
     if (inputType === 'password') {
       setInputType('text');
@@ -46,6 +48,7 @@ const LoginForm = ({ values, errors, touched}) => {
 };
 
 export default withFormik({
+  
   mapPropsToValues({ username, pass }) {
     return {
       username: username || '',
@@ -68,6 +71,7 @@ export default withFormik({
         setStatus(response.data);
         localStorage.setItem('token', response.data.access_token);
         localStorage.setItem('user', postValues.username);
+        
       })
       .catch(error => {
         console.log(postValues);

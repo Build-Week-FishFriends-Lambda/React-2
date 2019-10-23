@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, createContext} from 'react';
 import logo from './logo.svg';
 import './App.scss';
 
+import { LoginContext } from './contexts/LoginContext';
 import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from "./utils/PrivateRoute";
 
@@ -16,31 +17,37 @@ import Copyright from "./components/Copyright";
 import LoginForm from "./components/LoginForm";
 
 function App() {
+  
 
-  
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token") ? true : false);
+
+  const loginCheck = () => {
+    setIsLoggedIn(localStorage.getItem("token") ? true : false)
+  }
 
   return (
-    <div className="App">
-      <NavBar />
-      <Switch>
-        <Route exact path='/' render={props => <HomePage {...props} />} />
-        
-        <Route path='/login' render={props => <LoginForm />} />
-        <Route path='/signup' render={props => <SignupForm {...props} />} />
-        {//Map should be a private route
-        }
-        <Route path='/map' render={props => <LakesMap {...props} />} />
-        {//UserProfile should be private route
-        }
-        <PrivateRoute path='/profile' component={UserProfile} />
-        {//AddLog should be private route
-        }
-        <PrivateRoute path='/addlog' component={AddLog} />
-        
-      </Switch>
-      <Copyright></Copyright>
-    </div>
+    <LoginContext.Provider value={{isLoggedIn, setIsLoggedIn}}>
+      <div className="App">
+        <NavBar />
+        <Switch>
+          <Route exact path='/' render={props => <HomePage {...props} />} />
+          
+          <Route path='/login' render={props => <LoginForm />} />
+          <Route path='/signup' render={props => <SignupForm {...props} />} />
+          {//Map should be a private route
+          }
+          <Route path='/map' render={props => <LakesMap {...props} />} />
+          {//UserProfile should be private route
+          }
+          <PrivateRoute path='/profile' component={UserProfile} />
+          {//AddLog should be private route
+          }
+          <PrivateRoute path='/addlog' component={AddLog} />
+          
+        </Switch>
+        <Copyright />
+      </div>
+    </LoginContext.Provider>
   );
 }
 

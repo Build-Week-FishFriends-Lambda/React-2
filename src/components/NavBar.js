@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import beigeLogo from "./logo_beige.png";
+import { LoginContext } from '../contexts/LoginContext';
 
 const NavBar = (props) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token") ? true : false);
+    const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
     return (
     
         <div className="nav-bar">
