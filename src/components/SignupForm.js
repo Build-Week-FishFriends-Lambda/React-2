@@ -2,8 +2,39 @@ import React, { useEffect, useState } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Label } from 'semantic-ui-react';
+import styled from "styled-components";
 
 import axiosWithAuth from '../utils/axiosWithAuth';
+
+const FormContainer = styled.div`
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .Form {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 3px;
+    color: white;
+    box-shadow: 5px 5px 5px #000;
+
+    input {
+      padding: 5px;
+      margin: 5px;
+      border-radius: 3px;
+    }
+
+    button {
+      padding: 5px 25px;
+      margin-top: 10px;
+      background-color: #c7aa8b;
+      color: white;
+      border-radius: 3px;
+    }
+  }
+`
 
 const SignupForm = ({ values, errors, touched, status, history, handleUserObject }) => {
     const [inputType, setInputType] = useState('password');
@@ -19,18 +50,23 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
     return (
       <div className='html'>
         <div className='background'>
-          <div className='FormContainer'>
+          <FormContainer className='FormContainer'>
             <Form className='Form'>
               <Field value={values.firstName} className='Fields' type='text' name='firstName' placeholder='First Name' />
               {touched.firstname && errors.firstname && <p>{errors.firstname}</p>}
+              <br></br>
               <Field value={values.lastName} className='Fields' type='text' name='lastName' placeholder='Last Name' />
               {touched.lastname && errors.lastname && <p>{errors.lastname}</p>}
+              <br></br>
               <Field value={values.username} className='Fields' type='text' name='username' placeholder='Username' />
               {touched.username && errors.username && <p>{errors.username}</p>}
+              <br></br>
               <Field value={values.email} className='Fields' type='text' name='email' placeholder='Email' />
               {touched.email && errors.email && <p>{errors.email}</p>}
+              <br></br>
               <Field value={values.pass} className='Fields' type={inputType} name='pass' placeholder='Password' />
               {touched.pass && errors.pass && <p>{errors.pass}</p>}
+              <br></br>
               <Field
                 value={values.passconf}
                 className='Fields'
@@ -49,7 +85,7 @@ const SignupForm = ({ values, errors, touched, status, history, handleUserObject
                 </button>
               </div>
             </Form>
-          </div>
+          </FormContainer>
         </div>
       </div>
     );

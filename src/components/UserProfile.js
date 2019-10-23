@@ -1,4 +1,15 @@
 import React, { useState } from 'react';
+import styled from "styled-components";
+
+const Card = styled.div`
+  background-color: #333;
+  width: 300px;
+  margin: 20px auto;
+  padding: 10px;
+  color: white;
+  border-radius: 3px;
+  box-shadow: 5px 5px 5px #000;
+`
 
 export default function UserProfile() {
 
@@ -95,14 +106,14 @@ export default function UserProfile() {
             <h3>Some other info goes here</h3>
             {dummyLogs.map(log => {
                 return (
-                    <div className="log-card">
+                    <Card className="log-card">
                         <h3>Lake {log.lakeName}</h3>
                         <p>Fish caught: {log.fishCount}</p>
                         <p>Type of fish: {log.fishName}</p>
                         <p>Bait: {log.baitType}</p>
                         <p>Time spent: {log.timeSpent}</p>
                         <p>{log.timeOfDay}</p>
-                    </div>
+                    </Card>
                 )
             })}
         </>

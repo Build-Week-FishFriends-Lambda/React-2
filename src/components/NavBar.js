@@ -10,6 +10,7 @@ const NavBar = () => (
             <NavLink to='/map' activeClassName="active-link">Map</NavLink>
             <NavLink to='/profile' activeClassName="active-link">Profile</NavLink>
             <NavLink to='/addlog' activeClassName="active-link">Add Log</NavLink>
+            <NavLink to='/location' activeClassName="active-link">Location</NavLink>
         </div>
 );
 
