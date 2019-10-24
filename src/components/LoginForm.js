@@ -9,6 +9,7 @@ import { LoginContext } from '../contexts/LoginContext';
 import axiosWithAuthLogin from '../utils/axiosWithAuthLogin';
 
 const Center = styled.div`
+  margin-top: 4.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +19,7 @@ const Center = styled.div`
 
 const LoginContainer = styled.div`
   width: 300px;
-  border-radius: 3px;
+  border-radius: 5px;
   background-color: #333;
   box-shadow: 5px 5px 5px #000;
   padding: 10px;

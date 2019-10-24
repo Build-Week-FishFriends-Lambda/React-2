@@ -8,6 +8,8 @@ const Card = styled.div`
     margin: 10px auto;
     box-shadow: 5px 5px 5px #000;
     color: white;
+    border-radius:5px;
+    padding:1%;
 `
 
 
@@ -29,7 +31,7 @@ export default function LocationCard(props) {
     console.log(matched);
     return (
         <div>
-            <h1>{name}</h1>
+            <h1>{localStorage.getItem('token') ? name : "Please log in to view log data!"}</h1>
             {matched.map((el) => {
                 return <Card>
                     <h2>Author: {el.author}</h2>

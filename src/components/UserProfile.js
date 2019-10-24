@@ -30,12 +30,13 @@ export default function UserProfile() {
     useEffect(()=>{  
         setIsLoggedIn(true);
     },[])
+    
 
     return(
         <div className="user-profile">
             <h2>{localStorage.getItem('user') ? `${localStorage.getItem('user')}'s Stories:` : "Please Log In"}</h2>
             <h3>Add a new Log:</h3>
-            <AddLog />
+            <AddLog logs={logs} setLogs={setLogs} />
             <h3>Your logs:</h3>
             {logs.filter(log => log.author === localStorage.getItem('user')).map(log => {
                 return (                 
