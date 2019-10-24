@@ -30,14 +30,31 @@ const LogForm = styled.div`
 
 const AddLog = ({ errors, touched, values, status, history }) => {
 
-
+  const [locs, setLocs] = useState([])
   useEffect(()=>{  
     axiosWithAuth().get("locations/all")
     .then(res => {
-      console.log(res)
+      console.log(res);
      })
     .catch(err => console.log(err))  
 },[])
+
+  const checkLoc = () => {
+    if (!locs.map(loc => loc.locationname).find(item => item.includes(values.place))) {
+    axiosWithAuth()
+    .post('locations/add', {
+      "locationname": values.place,
+      "locationpicurl": "http://tinyimg.io/i/pabHplC.jpg",
+      "locationdesc": "Another great lake"})
+    .then(response => {
+      console.log(response)
+      
+    })
+    .catch(error => {
+      console.log(values);
+      console.error('Error', error);
+    })};
+  }
 
   return (
     <LogForm className='LogForm'>
@@ -70,7 +87,7 @@ const AddLog = ({ errors, touched, values, status, history }) => {
           <Field className='fields' value={values.timespent} type='text' name='timespent' placeholder='Time Spent' />
         </label>
         <br></br>
-        <button className='logbutton' type='submit'>
+        <button onClick={checkLoc} className='logbutton' type='submit'>
           Submit!
         </button>
       </Form>
@@ -93,7 +110,8 @@ export default withFormik({
   },
 
   handleSubmit(values, { resetForm, setStatus }) {
-    
+  
+      
 
     axiosWithAuth()
       .post('logs/add', values)
