@@ -28,6 +28,7 @@ const Card = styled.div`
 export default function Location() {
 
     const [location, setLocation] = useState([]);
+    const [logs, setLogs] = useState([]);
     const [area, setArea] = useState([]);
 
     useEffect(() => {
