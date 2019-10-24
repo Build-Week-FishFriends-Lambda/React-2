@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Marker } from 'react-map-gl';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const Markers = ({ zoom, lakes }) => {
         {lakes.map(lake => {
 
             return (
-                <Marker key={lake.id} latitude={Math.floor(Math.random()*(46-44+1)+44)} longitude={Math.floor(Math.random()*(-95+93-1)-94)}>
+                <Marker latitude={Math.random()*(46-44+1)+44} longitude={Math.random()*(-95+93-1)-94}>
                         <Link className='map-marker' to={`/locations/${lake.locationname}`}>
                             <img src={pin} />
                         </Link>
