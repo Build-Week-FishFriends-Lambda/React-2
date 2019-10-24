@@ -17,7 +17,7 @@ export default function LocationCard(props) {
     const [matched, setMatched] = useState([]);
 
     useEffect(() => {
-        axiosWithAuth().get("http://fishfriends.herokuapp.com/logs/all")
+        axiosWithAuth().get("https://fishfriends.herokuapp.com/logs/all")
             .then((response) => {
             setMatched(response.data.filter(loca => loca.place.includes(name)));
             
