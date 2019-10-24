@@ -29,7 +29,7 @@ export default function LocationCard(props) {
     return (
         <div>
             <h1>{name}</h1>
-            {/* {matched.map((el) => {
+            {matched.map((el) => {
                 return <Card>
                     <h2>Author: {el.author}</h2>
                     <p>Bait: {el.baittype}</p>
@@ -37,7 +37,7 @@ export default function LocationCard(props) {
                     <p>Caught: {el.fishnum}</p>
                     <p>Time Spent: {el.timespent}</p>
                 </Card>
-            })} */}
+            })}
         </div>
     )
 }
