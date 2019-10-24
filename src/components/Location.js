@@ -33,24 +33,36 @@ export default function Location() {
     useEffect(() => {
         axiosWithAuth().get("http://fishfriends.herokuapp.com/locations/all").then((response) => {
             setLocation(response.data)
-            console.log(response)
+            console.log("Location Response" , response)
+
         }).catch((error) => {
             console.log(error);
         })
 
-    //     setLocation({
-    //         "locationname": "Connecticut River",
-    //         "locationpicurl": "http://tinyimg.io/i/pabHplC.jpg",
-    //         "locationdesc": "A placid body of water known for its plentiful carp."
-    // },{
-    //         "locationname": "Grand View Lake",
-    //         "locationpicurl": "http://tinyimg.io/i/pabHplC.jpg",
-    //         "locationdesc": "A torrid body of water known for its sizeable Trout."
-    // },{
-    //         "locationname": "Clear Lake",
-    //         "locationpicurl": "http://tinyimg.io/i/pabHplC.jpg",
-    //         "locationdesc": "A small body of water known for its moody bass"
-    // })
+
+        axiosWithAuth().get("http://fishfriends.herokuapp.com/logs/all").then((response) => {
+            setLogs(response.data)
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        })
+
+        setLocation([{
+            "locationname": "Connecticut River",
+            "locationpicurl": "http://tinyimg.io/i/pabHplC.jpg",
+            "locationdesc": "A placid body of water known for its plentiful carp."
+    },{
+            "locationname": "Grand View Lake",
+            "locationpicurl": "http://tinyimg.io/i/pabHplC.jpg",
+            "locationdesc": "A torrid body of water known for its sizeable Trout."
+    },{
+            "locationname": "Clear Lake",
+            "locationpicurl": "http://tinyimg.io/i/pabHplC.jpg",
+            "locationdesc": "A small body of water known for its moody bass"
+    }])
+
+    console.log(location);
+
     }, [])
     
 
