@@ -2,6 +2,7 @@ import React, {useState, createContext} from 'react';
 import logo from './logo.svg';
 import './App.scss';
 
+import { LogsContext } from './contexts/LogsContext';
 import { LoginContext } from './contexts/LoginContext';
 import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from "./utils/PrivateRoute";
@@ -22,13 +23,11 @@ function App() {
   
 
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token") ? true : false);
-
-  const loginCheck = () => {
-    setIsLoggedIn(localStorage.getItem("token") ? true : false)
-  }
+  const [logs, setLogs] = useState([]);
 
   return (
     <LoginContext.Provider value={{isLoggedIn, setIsLoggedIn}}>
+      <LogsContext.Provider value={{logs, setLogs}}>
       <div className="App">
         <NavBar />
         <Switch>
@@ -53,6 +52,7 @@ function App() {
         </Switch>
         <Copyright />
       </div>
+      </LogsContext.Provider>
     </LoginContext.Provider>
   );
 }
