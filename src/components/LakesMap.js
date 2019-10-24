@@ -29,13 +29,13 @@ export default function LakesMap() {
   // }])}, [])
   
   useEffect(() => {
-    axiosWithAuth().get("http://fishfriends.herokuapp.com/locations/all").then((response) => {
+    axiosWithAuth().get("locations/all").then((response) => {
         setLocation(response.data)
         console.log(response)
     }).catch((error) => {
         console.log(error);
     })
-    axiosWithAuth().get("http://fishfriends.herokuapp.com/logs/all").then((response) => {
+    axiosWithAuth().get("logs/all").then((response) => {
         setLogs(response.data)
         console.log(response)
     }).catch((error) => {
