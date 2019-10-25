@@ -12,7 +12,7 @@ const Markers = ({ zoom, lakes }) => {
         {lakes.map(lake => {
 
             return (
-                <Marker latitude={Math.random()*(46-44+1)+44} longitude={Math.random()*(-95+93-1)-94}>
+                <Marker latitude={Math.random()*(48-42+1)+42} longitude={Math.random()*(-97+91-1)-91}>
                         <Link className='map-marker' to={`/location/${lake.locationname}`}>
                             <img src={pin} />
                         </Link>
