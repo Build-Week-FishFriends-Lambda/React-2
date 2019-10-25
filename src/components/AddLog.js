@@ -41,6 +41,7 @@ const AddLog = ({ errors, touched, values, status, history }) => {
 },[])
 
   const checkLoc = () => {
+    
     if (!locs.map(loc => loc.locationname).find(item => item.includes(values.place))) {
     axiosWithAuth()
     .post('locations/add', {
